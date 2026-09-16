@@ -1,169 +1,93 @@
-# Hungry Snake Game
+# Hungry Snake Adventure
 
-Welcome to the **Hungry Snake Game**! This project includes two versions of the game:
-1. **Terminal Version**: A console-based version of the game.
-2. **Graphical Version**: A graphical version built using the **SFML (Simple and Fast Multimedia Library)**.
-
-Both versions are written in C++ and provide a fun and interactive experience where you control a snake to catch falling frogs.
-
----
-
-## Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [How to Run](#how-to-run)
-  - [Terminal Version](#terminal-version)
-  - [Graphical Version](#graphical-version)
-- [Gameplay](#gameplay)
-- [Code Structure](#code-structure)
-- [Dependencies](#dependencies)
-
----
-
-## Introduction
-
-The **Hungry Snake Game** is a fun and interactive game where the player controls a snake to catch falling frogs. The goal is to score as many points as possible by catching frogs before they reach the bottom of the screen. The game increases in speed as you progress, making it more challenging over time.
-
-- **Terminal Version**: A simple console-based version of the game, perfect for quick play and learning the basics.
-- **Graphical Version**: A more engaging version with graphics, sound effects, and a high-score system, built using SFML.
-
----
+A C++ arcade game for Windows: move a snake left and right to catch frogs before they hit the ground. There are two versions: a graphical one built with **SFML 2.5** and a simple console one.
 
 ## Features
 
-### Terminal Version
-- **Simple Controls**: Use the `A` and `D` keys to move the snake left and right.
-- **Dynamic Gameplay**: Frogs fall from random positions at increasing speeds.
-- **Score Tracking**: Your score increases with each frog caught.
-- **Game Over**: The game ends if a frog reaches the bottom without being caught.
-- **Cross-Platform**: Works on both Windows and Unix-like systems.
+### Graphical Version (SFML)
 
-### Graphical Version
-- **Graphical Interface**: Built using SFML for rendering graphics and handling input.
-- **Sound Effects**: Includes background music, eating sounds, and game-over sounds.
-- **High Score System**: Tracks and displays the highest score achieved.
-- **Interactive Menu**: Start and exit the game using the mouse.
-
----
-
-## How to Run
+- 800 x 600 window at 60 FPS, with a textured background and sprites for the snake and frogs.
+- **Main menu** with **Start** and **Exit** buttons that you click with the mouse. `Esc` closes the window.
+- **Two frogs** fall at once. The second one starts falling after the first has dropped partway down the screen.
+- **The game speeds up.** Each catch makes the snake faster, and catching the first frog also makes the frogs fall faster.
+- **Screen wrap:** if the snake moves off one side of the screen, it comes back on the other side.
+- **Sound:** looping background music, plus sounds for catching a frog and for game over.
+- **Score and high score:** each game's score is added to `record_status.txt`. The game-over screen shows your score, the best score so far, and a **Try Again** button.
 
 ### Terminal Version
 
-#### Prerequisites
-- A C++ compiler (e.g., `g++` or `clang++`).
-- A terminal or command prompt.
+- A 12 x 9 text board. The snake is `^` and the frog is `*`.
+- Real-time input with `conio.h`, so you don't need to press Enter to move.
+- The game gets faster as the delay between frames shrinks.
+- Your score is shown at the top. The game ends as soon as a frog reaches the bottom row.
 
-#### Steps to Run
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/sedwna/Hungry-Snake-Adventure.git
-   ```
+## Controls
 
-2. **Compile the Code**:
-   ```bash
-   g++ -o hungry_snake_terminal main_terminal.cpp app_terminal.cpp snake_terminal.cpp frog_terminal.cpp -Iinclude
-   ```
+| Key | Action |
+| --- | --- |
+| `A` | Move left |
+| `D` | Move right |
+| Mouse | Click Start, Try Again or Exit (graphical version) |
+| `Esc` | Close the menu or game-over screen (graphical version) |
 
-3. **Run the Game**:
-   ```bash
-   ./hungry_snake_terminal
-   ```
+In the terminal version, the controls use lowercase `a` and `d`. At the `>` prompt, type `s` to start or `help` to see the commands.
 
-4. **Follow the Instructions**:
-   - At the prompt, type `s` to start the game.
-   - Use `A` to move the snake left and `D` to move right.
-   - Type `help` for a list of commands.
+## Requirements
 
----
+- **Windows.** Both versions include `conio.h`, and the terminal version clears the screen with `cls`.
+- **MinGW-w64 `g++`.** The graphical version comes with a prebuilt MinGW build of SFML 2.5 (headers, libraries and DLLs) in `Graphical Version/sfml/`. Your compiler must be compatible with that build. If it isn't, install a matching SFML 2.5.x.
+- `make`, for example `mingw32-make`, to use the Makefile.
+
+## Build and Run
+
+```bash
+git clone https://github.com/sedwna/Hungry-Snake-Adventure.git
+cd Hungry-Snake-Adventure
+```
 
 ### Graphical Version
 
-#### Prerequisites
-- A C++ compiler (e.g., `g++` or `clang++`).
-- **SFML Library** installed on your system.
-- A terminal or command prompt.
+```bash
+cd "Graphical Version"
+mingw32-make            # compiles src/*.cpp and links against sfml/lib -> app.exe
+cp sfml/bin/*.dll .     # the SFML DLLs must be next to app.exe (or on PATH)
+./app.exe
+```
 
-#### Steps to Run
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/sedwna/Hungry-Snake-Adventure.git
-   ```
-
-2. **Install SFML** (if not already installed):
-   - On **Ubuntu/Debian**:
-     ```bash
-     sudo apt-get install libsfml-dev
-     ```
-   - On **Windows**: Download SFML from [SFML's official website](https://www.sfml-dev.org/download.php) and set up the library.
-
-3. **Compile the Code**:
-   ```bash
-   g++ -o hungry_snake_graphical main.cpp app.cpp game.cpp snake.cpp frog.cpp -Iinclude -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
-   ```
-
-4. **Run the Game**:
-   ```bash
-   ./hungry_snake_graphical
-   ```
-
-5. **Follow the Instructions**:
-   - Use the mouse to click on the **Start** button to begin the game.
-   - Use `A` to move the snake left and `D` to move right.
-   - Click on the **Exit** button to quit the game.
-
----
-
-## Gameplay
+Run the game from inside `Graphical Version/`, because it loads `font/`, `picture/` and `sound/` using relative paths.
 
 ### Terminal Version
-- **Objective**: Catch as many frogs (`*`) as possible with your snake (`^`).
-- **Controls**:
-  - `A`: Move the snake left.
-  - `D`: Move the snake right.
-- **Scoring**: Each frog caught increases your score by 1.
-- **Game Over**: If a frog reaches the bottom of the screen without being caught, the game ends.
 
-### Graphical Version
-- **Objective**: Catch as many frogs as possible with your snake.
-- **Controls**:
-  - `A`: Move the snake left.
-  - `D`: Move the snake right.
-- **Scoring**: Each frog caught increases your score by 1.
-- **Game Over**: If a frog reaches the bottom of the screen without being caught, the game ends.
-- **High Score**: The game tracks and displays the highest score achieved.
+The terminal version doesn't use SFML, so you can compile it directly:
 
----
+```bash
+cd "Terminal Version"
+g++ src/*.cpp -o hungry-snake.exe
+./hungry-snake.exe
+```
 
-## Code Structure
+## Project Structure
 
-The project is organized into the following files:
+```
+Hungry-Snake-Adventure/
+├── Graphical Version/
+│   ├── include/        # app.hpp, game.hpp, snake.hpp, frog.hpp
+│   ├── src/            # main.cpp, app.cpp (menu), game.cpp (game loop, collisions,
+│   │                   #   score, try-again screen), snake.cpp, frog.cpp
+│   ├── font/           # font.TTF
+│   ├── picture/        # background, snake, frog and button images
+│   ├── sound/          # background, eat and game-over sounds (.wav)
+│   ├── sfml/           # bundled SFML 2.5 (include/, lib/, bin/)
+│   └── Makefile
+├── Terminal Version/
+│   ├── include/        # app.hpp, snake.hpp, frog.hpp
+│   ├── src/            # main.cpp, app.cpp (board, loop, scoring), snake.cpp, frog.cpp
+│   └── Makefile
+└── README.md
+```
 
-### Terminal Version
-- **`main_terminal.cpp`**: The entry point of the terminal version. Initializes the `App` class and starts the game loop.
-- **`app_terminal.cpp`**: Contains the main logic for the terminal version, including the game loop, board rendering, and input handling.
-- **`snake_terminal.cpp`**: Implements the snake's movement logic.
-- **`frog_terminal.cpp`**: Handles the frog's random generation and movement.
+## Tech Stack
 
-### Graphical Version
-- **`main.cpp`**: The entry point of the graphical version. Initializes the `App` class and starts the game loop.
-- **`app.cpp`**: Contains the main menu logic, including rendering the menu and handling user input.
-- **`game.cpp`**: Implements the main game logic, including rendering the game, handling collisions, and updating the score.
-- **`snake.cpp`**: Handles the snake's movement and speed.
-- **`frog.cpp`**: Manages the frog's position, speed, and random generation.
-- **`include/`**: Contains header files (`app.hpp`, `game.hpp`, `snake.hpp`, `frog.hpp`) for class definitions.
-
----
-
-## Dependencies
-
-### Terminal Version
-- **Standard C++ Library**: The project uses the standard C++ library for input/output, strings, and random number generation.
-
-### Graphical Version
-- **SFML Library**: The project uses SFML for graphics, window management, and audio.
-  - Install SFML using your package manager or download it from the [official website](https://www.sfml-dev.org/).
-- **Standard C++ Library**: The project uses the standard C++ library for input/output, strings, and random number generation.
-
----
-
+- C++
+- [SFML 2.5](https://www.sfml-dev.org/) (graphics, window, system and audio modules) for the graphical version
+- `conio.h` for real-time keyboard input in the terminal version
