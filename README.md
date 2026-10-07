@@ -2,6 +2,18 @@
 
 A C++ arcade game for Windows: move a snake left and right to catch frogs before they hit the ground. There are two versions: a graphical one built with **SFML 2.5** and a simple console one.
 
+## Screenshots
+
+Actual screenshots of the graphical SFML version, supplied by the project owner on October 7, 2026. The SVG frames show the full 800 × 600 game canvas without desktop margins or the Windows title bar; original screenshot pixels are not regenerated.
+
+### Gameplay
+
+![Hungry Snake Adventure gameplay](docs/showroom/gameplay.svg)
+
+### Main menu
+
+![Hungry Snake Adventure main menu](docs/showroom/menu.svg)
+
 ## Features
 
 ### Graphical Version (SFML)
