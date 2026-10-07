@@ -1,3 +1,40 @@
+<!-- visual-showroom:start -->
+<p align="center">
+  <img src="docs/showroom/readme-banner.svg" alt="Hungry Snake Adventure — repository cover" width="100%">
+</p>
+
+<p align="center">
+  <strong>Hungry Snake Adventure</strong><br>
+  SMALL GAMES / REAL PLAY
+</p>
+
+<p align="center">
+  <a href="https://sajjad-dehghan-personal-site.prisoner-sedwna.workers.dev/projects/hungry-snake-adventure"><strong>Explore the showroom ↗</strong></a> ·
+  <a href="#implementation--original-documentation">Setup &amp; implementation ↓</a>
+</p>
+
+A C++ game where a snake catches falling frogs. There's a terminal version and an SFML version with sound, speed that keeps rising, and a saved high score.
+
+## Visual tour
+
+[![Actual SFML graphical gameplay · screenshot supplied by the project owner](docs/showroom/readme-view-1.svg)](https://sajjad-dehghan-personal-site.prisoner-sedwna.workers.dev/projects/hungry-snake-adventure)
+
+<p align="center">
+  <a href="https://sajjad-dehghan-personal-site.prisoner-sedwna.workers.dev/projects/hungry-snake-adventure"><img src="docs/showroom/readme-view-2.svg" alt="Game start menu" width="96%"></a>
+</p>
+
+1. Actual SFML graphical gameplay · screenshot supplied by the project owner
+2. Game start menu
+
+Real captures or owner-supplied images, not generated product mockups. Demo/local data and edition boundaries are documented below.
+
+## Implementation & original documentation
+
+The existing run instructions, architecture, limitations and credits are preserved below.
+
+---
+<!-- visual-showroom:end -->
+
 # Hungry Snake Adventure
 
 A C++ arcade game for Windows: move a snake left and right to catch frogs before they hit the ground. There are two versions: a graphical one built with **SFML 2.5** and a simple console one.
